@@ -19,11 +19,13 @@ def getRand():
     return numpy.random.uniform(-1,1)
 
 def getY(xVal,m,b):
-
+    
+    # Get position on our 45 degree straight line
     lineY = m*xVal + b
     
     std_dev = 0.2
     
+    # Offset the generated data using a normal distribution to give it some noise
     y = numpy.random.normal(lineY, std_dev)
 
     return y
@@ -42,7 +44,8 @@ def plotData(currentData, delay):
     
     
 def createData(m, b):
-
+    
+    # Initialize an empty dictionary to hold our data
     dataDict = {"x": [], "yp":[]}
 
     # Create N datapoints
@@ -62,6 +65,7 @@ input_data = createData(line_gradient,intercept)
 
 print(input_data)
 
+# Save generated data to a JSON file (CSV probably would have made better sense)
 input_data.to_json("linear_data_1D.txt")
 
 plotData(input_data, 1)
